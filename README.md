@@ -60,37 +60,41 @@ INNER JOIN DimCustomer dc ON fis.CustomerKey = dc.CustomerKey
 INNER JOIN DimSalesTerritory dst ON fis.SalesTerritoryKey = dst.SalesTerritoryKey
 WHERE YEAR(fis.OrderDate) = 2013
 
-
+---
+```
 ## 📈 Consultas Analíticas
 
 ### 1. Vendas por Categoria de Produto
-```sql
+```
 SELECT CATEGORIA_PRODUTO, SUM(QTD_VENDIDA) AS TOTAL_VENDAS
 FROM VENDAS_INTERNET
 GROUP BY CATEGORIA_PRODUTO
-
-2. Receita por Mês
-sql
+```
+### 2. Receita por Mês
+```
 SELECT MONTH(DATA_PEDIDO) AS MES, SUM(RECEITA_VENDA) AS RECEITA_TOTAL
 FROM VENDAS_INTERNET
 GROUP BY MONTH(DATA_PEDIDO)
 ORDER BY MES
-3. Receita e Custo por País
-sql
+```
+### 3. Receita e Custo por País
+```
 SELECT PAÍS, SUM(RECEITA_VENDA) AS RECEITA_TOTAL, SUM(CUSTO_VENDA) AS CUSTO_TOTAL
 FROM VENDAS_INTERNET
 GROUP BY PAÍS
-4. Vendas por Sexo
-sql
+
+```
+### 4. Vendas por Sexo
+```
 SELECT SEXO, SUM(QTD_VENDIDA) AS TOTAL_VENDAS
 FROM VENDAS_INTERNET
 GROUP BY SEXO
 
-🔍 Análises Avançadas 
--- 1. Ticket Médio por Cliente
--- Avalia o valor médio gasto por cliente em pedidos online.
+```
+## 🔍 Análises Avançadas 
 
-
+### 1. Ticket Médio por Cliente
+```
 SELECT 
     NOME_CLIENTE,
     COUNT(Nº_PEDIDO) AS TOTAL_PEDIDOS,
@@ -100,10 +104,9 @@ FROM VENDAS_INTERNET
 GROUP BY NOME_CLIENTE
 ORDER BY TICKET_MEDIO DESC
 
-
--- 2. Produtos Mais Vendidos
--- Identifica os produtos com maior volume de vendas.
-
+```
+### 2. Produtos Mais Vendidos
+```
 SELECT 
     dp.EnglishProductName AS PRODUTO,
     SUM(fis.OrderQuantity) AS QTD_TOTAL
@@ -113,10 +116,9 @@ WHERE YEAR(fis.OrderDate) = 2013
 GROUP BY dp.EnglishProductName
 ORDER BY QTD_TOTAL DESC
 
-
--- 3. Comparativo Receita vs. Custo por Categoria
--- Avalia a margem por categoria de produto.
-
+```
+### 3. Comparativo Receita vs. Custo por Categoria
+```
 SELECT 
     CATEGORIA_PRODUTO,
     SUM(RECEITA_VENDA) AS RECEITA,
@@ -126,12 +128,9 @@ FROM VENDAS_INTERNET
 GROUP BY CATEGORIA_PRODUTO
 ORDER BY MARGEM DESC
 
-
--- 4. Distribuição de Vendas por Faixa Etária
--- Se quiser explorar dados demográficos, pode calcular a idade dos clientes e agrupar por
--- faixa.
-
-
+```
+### 4. Distribuição de Vendas por Faixa Etária
+```
 SELECT 
     CASE 
         WHEN YEAR(GETDATE()) - YEAR(dc.BirthDate) BETWEEN 18 AND 25 THEN '18-25'
@@ -153,9 +152,9 @@ GROUP BY
     END
 
 
-
--- 5. Tempo Médio entre Pedidos por Cliente
--- Ajuda a entender o comportamento de recompra.
+```
+### 5. Tempo Médio entre Pedidos por Cliente
+```
 
 WITH PedidoCliente AS (
     SELECT 
@@ -178,20 +177,20 @@ SELECT
 FROM DiferencaDias
 GROUP BY CustomerKey
 
-
+```
 🔄 Atualização de Dados e Integração com Excel
 Exemplo de atualização de dados via transação SQL:
-
-
+```
 BEGIN TRANSACTION T1
     UPDATE FactInternetSales
     SET OrderQuantity = 20
     WHERE ProductKey = 361 -- Categoria Bike
-COMMIT TRANSACTION T1
-A view VENDAS_INTERNET pode ser conectada ao Excel via Power Query ou conexão ODBC para criação de dashboards dinâmicos.
+````
+### A view VENDAS_INTERNET pode ser conectada ao Excel via Power Query ou conexão ODBC para criação de dashboards dinâmicos.
 
-🧠 Autor(a)
-Débora Projeto acadêmico e exploratório para fins de aprendizado em BI e integração de dados.
+## 🧠 Autor(a)
+Débora Rebula Klein - Projeto acadêmico e exploratório para fins de aprendizado em BI e integração de dados.
 
-📎 Licença
+### 📎 Licença
 Este projeto é de uso livre para fins educacionais. AdventureWorks é uma base de dados pública fornecida pela Microsoft.
+```
