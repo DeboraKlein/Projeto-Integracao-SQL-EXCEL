@@ -40,7 +40,7 @@ Para instalar o banco AdventureWorks DW 2014, siga as instruções oficiais da M
 
 ## 🧱 Estrutura da View `VENDAS_INTERNET`
 
-```sql
+```
 CREATE VIEW VENDAS_INTERNET AS
 SELECT
     fis.SalesOrderNumber AS [Nº_PEDIDO],
@@ -83,10 +83,104 @@ sql
 SELECT SEXO, SUM(QTD_VENDIDA) AS TOTAL_VENDAS
 FROM VENDAS_INTERNET
 GROUP BY SEXO
+
+🔍 Análises Avançadas 
+-- 1. Ticket Médio por Cliente
+-- Avalia o valor médio gasto por cliente em pedidos online.
+
+
+SELECT 
+    NOME_CLIENTE,
+    COUNT(Nº_PEDIDO) AS TOTAL_PEDIDOS,
+    SUM(RECEITA_VENDA) AS RECEITA_TOTAL,
+    AVG(RECEITA_VENDA) AS TICKET_MEDIO
+FROM VENDAS_INTERNET
+GROUP BY NOME_CLIENTE
+ORDER BY TICKET_MEDIO DESC
+
+
+-- 2. Produtos Mais Vendidos
+-- Identifica os produtos com maior volume de vendas.
+
+SELECT 
+    dp.EnglishProductName AS PRODUTO,
+    SUM(fis.OrderQuantity) AS QTD_TOTAL
+FROM FactInternetSales fis
+JOIN DimProduct dp ON fis.ProductKey = dp.ProductKey
+WHERE YEAR(fis.OrderDate) = 2013
+GROUP BY dp.EnglishProductName
+ORDER BY QTD_TOTAL DESC
+
+
+-- 3. Comparativo Receita vs. Custo por Categoria
+-- Avalia a margem por categoria de produto.
+
+SELECT 
+    CATEGORIA_PRODUTO,
+    SUM(RECEITA_VENDA) AS RECEITA,
+    SUM(CUSTO_VENDA) AS CUSTO,
+    SUM(RECEITA_VENDA - CUSTO_VENDA) AS MARGEM
+FROM VENDAS_INTERNET
+GROUP BY CATEGORIA_PRODUTO
+ORDER BY MARGEM DESC
+
+
+-- 4. Distribuição de Vendas por Faixa Etária
+-- Se quiser explorar dados demográficos, pode calcular a idade dos clientes e agrupar por
+-- faixa.
+
+
+SELECT 
+    CASE 
+        WHEN YEAR(GETDATE()) - YEAR(dc.BirthDate) BETWEEN 18 AND 25 THEN '18-25'
+        WHEN YEAR(GETDATE()) - YEAR(dc.BirthDate) BETWEEN 26 AND 35 THEN '26-35'
+        WHEN YEAR(GETDATE()) - YEAR(dc.BirthDate) BETWEEN 36 AND 50 THEN '36-50'
+        ELSE '51+'
+    END AS FAIXA_ETARIA,
+    COUNT(*) AS TOTAL_CLIENTES,
+    SUM(fis.SalesAmount) AS RECEITA_TOTAL
+FROM FactInternetSales fis
+JOIN DimCustomer dc ON fis.CustomerKey = dc.CustomerKey
+WHERE YEAR(fis.OrderDate) = 2013
+GROUP BY 
+    CASE 
+        WHEN YEAR(GETDATE()) - YEAR(dc.BirthDate) BETWEEN 18 AND 25 THEN '18-25'
+        WHEN YEAR(GETDATE()) - YEAR(dc.BirthDate) BETWEEN 26 AND 35 THEN '26-35'
+        WHEN YEAR(GETDATE()) - YEAR(dc.BirthDate) BETWEEN 36 AND 50 THEN '36-50'
+        ELSE '51+'
+    END
+
+
+
+-- 5. Tempo Médio entre Pedidos por Cliente
+-- Ajuda a entender o comportamento de recompra.
+
+WITH PedidoCliente AS (
+    SELECT 
+        CustomerKey,
+        OrderDate,
+        LAG(OrderDate) OVER (PARTITION BY CustomerKey ORDER BY OrderDate) AS PedidoAnterior
+    FROM FactInternetSales
+    WHERE YEAR(OrderDate) = 2013
+),
+DiferencaDias AS (
+    SELECT 
+        CustomerKey,
+        DATEDIFF(DAY, PedidoAnterior, OrderDate) AS DiasEntrePedidos
+    FROM PedidoCliente
+    WHERE PedidoAnterior IS NOT NULL
+)
+SELECT 
+    CustomerKey,
+    AVG(DiasEntrePedidos) AS MEDIA_DIAS_ENTRE_PEDIDOS
+FROM DiferencaDias
+GROUP BY CustomerKey
+
+
 🔄 Atualização de Dados e Integração com Excel
 Exemplo de atualização de dados via transação SQL:
 
-sql
+
 BEGIN TRANSACTION T1
     UPDATE FactInternetSales
     SET OrderQuantity = 20
