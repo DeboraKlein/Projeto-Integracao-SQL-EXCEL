@@ -59,3 +59,43 @@ INNER JOIN DimProductCategory dpc ON dps.ProductCategoryKey = dpc.ProductCategor
 INNER JOIN DimCustomer dc ON fis.CustomerKey = dc.CustomerKey
 INNER JOIN DimSalesTerritory dst ON fis.SalesTerritoryKey = dst.SalesTerritoryKey
 WHERE YEAR(fis.OrderDate) = 2013
+
+
+📈 Consultas Analíticas
+1. Vendas por Categoria de Produto
+sql
+SELECT CATEGORIA_PRODUTO, SUM(QTD_VENDIDA) AS TOTAL_VENDAS
+FROM VENDAS_INTERNET
+GROUP BY CATEGORIA_PRODUTO
+2. Receita por Mês
+sql
+SELECT MONTH(DATA_PEDIDO) AS MES, SUM(RECEITA_VENDA) AS RECEITA_TOTAL
+FROM VENDAS_INTERNET
+GROUP BY MONTH(DATA_PEDIDO)
+ORDER BY MES
+3. Receita e Custo por País
+sql
+SELECT PAÍS, SUM(RECEITA_VENDA) AS RECEITA_TOTAL, SUM(CUSTO_VENDA) AS CUSTO_TOTAL
+FROM VENDAS_INTERNET
+GROUP BY PAÍS
+4. Vendas por Sexo
+sql
+SELECT SEXO, SUM(QTD_VENDIDA) AS TOTAL_VENDAS
+FROM VENDAS_INTERNET
+GROUP BY SEXO
+🔄 Atualização de Dados e Integração com Excel
+Exemplo de atualização de dados via transação SQL:
+
+sql
+BEGIN TRANSACTION T1
+    UPDATE FactInternetSales
+    SET OrderQuantity = 20
+    WHERE ProductKey = 361 -- Categoria Bike
+COMMIT TRANSACTION T1
+A view VENDAS_INTERNET pode ser conectada ao Excel via Power Query ou conexão ODBC para criação de dashboards dinâmicos.
+
+🧠 Autor(a)
+Débora Projeto acadêmico e exploratório para fins de aprendizado em BI e integração de dados.
+
+📎 Licença
+Este projeto é de uso livre para fins educacionais. AdventureWorks é uma base de dados pública fornecida pela Microsoft.
