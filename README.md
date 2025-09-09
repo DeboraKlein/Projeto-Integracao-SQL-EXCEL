@@ -61,12 +61,14 @@ INNER JOIN DimSalesTerritory dst ON fis.SalesTerritoryKey = dst.SalesTerritoryKe
 WHERE YEAR(fis.OrderDate) = 2013
 
 
-📈 Consultas Analíticas
-1. Vendas por Categoria de Produto
-sql
+## 📈 Consultas Analíticas
+
+### 1. Vendas por Categoria de Produto
+```sql
 SELECT CATEGORIA_PRODUTO, SUM(QTD_VENDIDA) AS TOTAL_VENDAS
 FROM VENDAS_INTERNET
 GROUP BY CATEGORIA_PRODUTO
+
 2. Receita por Mês
 sql
 SELECT MONTH(DATA_PEDIDO) AS MES, SUM(RECEITA_VENDA) AS RECEITA_TOTAL
