@@ -205,7 +205,7 @@ SELECT
 FROM DiferencaDias
 GROUP BY CustomerKey
 ```
-🏅 Tabela Dinâmica: Ranking de Clientes
+### 6. Ranking Top 5 Clientes por Receita
 Tabela gerada no Excel a partir da view VENDAS_INTERNET, conectada via Power Query. Utilizada para identificar os clientes com maior valor agregado por pedido.
 
 📊 Campos utilizados:
