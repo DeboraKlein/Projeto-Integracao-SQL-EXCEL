@@ -204,7 +204,16 @@ SELECT
     AVG(DiasEntrePedidos) AS MEDIA_DIAS_ENTRE_PEDIDOS
 FROM DiferencaDias
 GROUP BY CustomerKey
+```
+🏅 Tabela Dinâmica: Ranking de Clientes
+Tabela gerada no Excel a partir da view VENDAS_INTERNET, conectada via Power Query. Utilizada para identificar os clientes com maior valor agregado por pedido.
 
+📊 Campos utilizados:
+NOME_CLIENTE
+TOTAL_PEDIDOS (Contagem de Nº_PEDIDO)
+RECEITA_TOTAL (Soma de RECEITA_VENDA)
+TICKET_MEDIO (Receita Total ÷ Total de Pedidos)
+```
 ```
 ## 🧾 Indicadores-Chave (KPI Cards)
 ### 🎯 1. Receita Total
