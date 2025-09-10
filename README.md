@@ -178,6 +178,32 @@ FROM DiferencaDias
 GROUP BY CustomerKey
 
 ```
+🧾 Indicadores-Chave (KPI Cards)
+🎯 1. Receita Total
+```
+SELECT SUM(RECEITA_VENDA) AS RECEITA_TOTAL FROM VENDAS_INTERNET
+
+```
+🧮 2. Custo Total
+```
+SELECT SUM(CUSTO_VENDA) AS CUSTO_TOTAL FROM VENDAS_INTERNET
+
+```
+📊 3. Margem Total
+```
+SELECT SUM(RECEITA_VENDA - CUSTO_VENDA) AS MARGEM_TOTAL FROM VENDAS_INTERNET
+
+```
+📦 4. Total de Pedidos
+```
+SELECT COUNT(DISTINCT Nº_PEDIDO) AS TOTAL_PEDIDOS FROM VENDAS_INTERNET
+
+```
+🧾 5. Ticket Médio
+```
+SELECT AVG(RECEITA_VENDA) AS TICKET_MEDIO FROM VENDAS_INTERNET
+
+```
 🔄 Atualização de Dados e Integração com Excel
 Exemplo de atualização de dados via transação SQL:
 ```
