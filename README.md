@@ -60,6 +60,34 @@ INNER JOIN DimCustomer dc ON fis.CustomerKey = dc.CustomerKey
 INNER JOIN DimSalesTerritory dst ON fis.SalesTerritoryKey = dst.SalesTerritoryKey
 WHERE YEAR(fis.OrderDate) = 2013
 
+```
+## Incluindo Margem de Vendas na View
+```
+ALTER VIEW VENDAS_INTERNET AS
+SELECT
+    fis.SalesOrderNumber AS [Nº_PEDIDO],
+    fis.OrderDate AS [DATA_PEDIDO],
+    dpc.EnglishProductCategoryName AS [CATEGORIA_PRODUTO],
+    dc.FirstName + ' ' + dc.LastName AS [NOME_CLIENTE],
+    dc.Gender AS [GENERO],
+    dst.SalesTerritoryCountry AS [PAÍS],
+    fis.OrderQuantity AS [QTD_VENDIDA],
+    fis.TotalProductCost AS [CUSTO_VENDA],
+    fis.SalesAmount AS [RECEITA_VENDA],
+    fis.SalesAmount - fis.TotalProductCost AS [MARGEM],
+    CASE 
+        WHEN fis.SalesAmount = 0 THEN 0
+        ELSE ROUND((fis.SalesAmount - fis.TotalProductCost) / fis.SalesAmount, 2)
+    END AS [MARGEM_%]
+FROM FactInternetSales fis
+INNER JOIN DimProduct dp ON fis.ProductKey = dp.ProductKey
+INNER JOIN DimProductSubcategory dps ON dp.ProductSubcategoryKey = dps.ProductSubcategoryKey
+INNER JOIN DimProductCategory dpc ON dps.ProductCategoryKey = dpc.ProductCategoryKey
+INNER JOIN DimCustomer dc ON fis.CustomerKey = dc.CustomerKey
+INNER JOIN DimSalesTerritory dst ON fis.SalesTerritoryKey = dst.SalesTerritoryKey
+WHERE YEAR(fis.OrderDate) = 2013
+
+
 ---
 ```
 ## 📈 Consultas Analíticas
