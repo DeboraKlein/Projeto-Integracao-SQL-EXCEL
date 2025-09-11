@@ -242,8 +242,26 @@ SELECT
     SUM(RECEITA_VENDA) / COUNT(DISTINCT Nº_PEDIDO) AS TICKET_MEDIO
 FROM VENDAS_INTERNET
 
-
 ```
+## 📸 Visualizações do Dashboard
+
+Abaixo estão dois exemplos de visualizações geradas no Excel a partir da integração com SQL Server:
+
+### 🖼️ 1. Primeira página do Relatório
+
+![Tabela Dinâmica – Ranking de Clientes](./img/tabela-ranking-clientes.png)
+
+
+---
+
+### 📊 2. Página do Relatório
+![Gráfico de Barras – Top 10 Clientes](./img/grafico-top10-ticket.png)
+````
+
+---
+
+
+````
 ## 🔄 Atualização de Dados e Integração com Excel
 Exemplo de atualização de dados via transação SQL:
 ```
