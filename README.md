@@ -249,8 +249,8 @@ Abaixo estão dois exemplos de visualizações geradas no Excel a partir da inte
 
 ### 🖼️ 1. Primeira página do Relatório
 
-![Dashboard](<img width="1920" height="1020" alt="Projeto Integracao SQL EXCEL xlsx - Excel 10_09_2025 20_56_48" src="https://github.com/user-attachments/assets/183055f4-7262-4c2f-9ce1-5124ec53853d" />
-)
+![Dashboard](https://github.com/user-attachments/assets/183055f4-7262-4c2f-9ce1-5124ec53853d)
+
 
 
 ---
@@ -258,8 +258,6 @@ Abaixo estão dois exemplos de visualizações geradas no Excel a partir da inte
 ### 📊 2. Página do Relatório
 ![Gráfico de Barras – Top 10 Clientes](./img/grafico-top10-ticket.png)
 ````
-
----
 
 
 ````
