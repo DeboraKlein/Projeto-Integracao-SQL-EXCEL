@@ -249,7 +249,8 @@ Abaixo estão dois exemplos de visualizações geradas no Excel a partir da inte
 
 ### 🖼️ 1. Primeira página do Relatório
 
-![Tabela Dinâmica – Ranking de Clientes](./img/tabela-ranking-clientes.png)
+![Dashboard](<img width="1920" height="1020" alt="Projeto Integracao SQL EXCEL xlsx - Excel 10_09_2025 20_56_48" src="https://github.com/user-attachments/assets/183055f4-7262-4c2f-9ce1-5124ec53853d" />
+)
 
 
 ---
