@@ -256,7 +256,8 @@ Abaixo estão dois exemplos de visualizações geradas no Excel a partir da inte
 ---
 
 ### 📊 2. Página do Relatório
-![Gráfico de Barras – Top 10 Clientes](./img/grafico-top10-ticket.png)
+![Dashboard](https://github.com/user-attachments/assets/ff17d9bc-f6a6-4b7c-b055-2d22544cbfa4)
+
 ````
 
 
