@@ -249,14 +249,16 @@ Abaixo estão dois exemplos de visualizações geradas no Excel a partir da inte
 
 ### 🖼️ 1. Primeira página do Relatório
 
-![Dashboard](https://github.com/user-attachments/assets/183055f4-7262-4c2f-9ce1-5124ec53853d)
+![Dashboard](https://github.com/user-attachments/assets/b71a43b6-1f5c-4a2e-bf79-c9e7348f2446)
+
 
 
 
 ---
 
 ### 📊 2. Página do Relatório
-![Dashboard](https://github.com/user-attachments/assets/ff17d9bc-f6a6-4b7c-b055-2d22544cbfa4)
+![Dashboard](https://github.com/user-attachments/assets/2801479b-cd45-42d5-a003-7e582689fc25)
+
 
 ````
 
