@@ -1,31 +1,31 @@
-# 📊 Projeto de Integração SQL Server + Excel  
+#  Projeto de Integração SQL Server + Excel  
 **Base de Dados: AdventureWorks DW 2014**
 
-## 🚀 Objetivo
+##  Objetivo
 
 Desenvolver uma integração entre SQL Server e Excel para análise de indicadores de vendas online, utilizando dados do banco AdventureWorks DW 2014. O foco será em métricas de desempenho para o ano de 2013.
 
 ---
 
-## 📥 Instalação do Banco de Dados
+##  Instalação do Banco de Dados
 
 Para instalar o banco AdventureWorks DW 2014, siga as instruções oficiais da Microsoft:  
 🔗 [AdventureWorks - Instalação e Configuração](https://docs.microsoft.com/pt-br/sql/samples/adventureworks-install-configure?view=sql-server-ver16&tabs=ssms)
 
 ---
 
-## 📌 Indicadores Definidos
+##  Indicadores Definidos
 
 1. **Total de Vendas Internet por Categoria do Produto**  
 2. **Receita Total Internet por Mês do Pedido**  
 3. **Receita e Custo Total Internet por País**  
 4. **Total de Vendas Internet por Sexo do Cliente**
 
-> ⚠️ **Ano de análise:** 2013
+>  **Ano de análise:** 2013
 
 ---
 
-## 🗃️ Tabelas Utilizadas
+##  Tabelas Utilizadas
 
 | Tabela               | Descrição                          |
 |----------------------|-------------------------------------|
@@ -38,7 +38,7 @@ Para instalar o banco AdventureWorks DW 2014, siga as instruções oficiais da M
 
 ---
 
-## 🧱 Estrutura da View `VENDAS_INTERNET`
+##  Estrutura da View `VENDAS_INTERNET`
 
 ```
 CREATE VIEW VENDAS_INTERNET AS
@@ -90,7 +90,7 @@ WHERE YEAR(fis.OrderDate) = 2013
 
 ---
 ```
-## 📈 Consultas Analíticas
+##  Consultas Analíticas
 
 ### 1. Vendas por Categoria de Produto
 ```
@@ -119,7 +119,7 @@ FROM VENDAS_INTERNET
 GROUP BY SEXO
 
 ```
-## 🔍 Análises Avançadas 
+##  Análises Avançadas 
 
 ### 1. Ticket Médio por Cliente
 ```
@@ -208,46 +208,46 @@ GROUP BY CustomerKey
 ### 6. Ranking Top 5 Clientes por Receita
 Tabela gerada no Excel a partir da view VENDAS_INTERNET, conectada via Power Query. Utilizada para identificar os clientes com maior valor agregado por pedido.
 
-📊 Campos utilizados:
+#### Campos utilizados:
 NOME_CLIENTE
 TOTAL_PEDIDOS (Contagem de Nº_PEDIDO)
 RECEITA_TOTAL (Soma de RECEITA_VENDA)
 TICKET_MEDIO (Receita Total ÷ Total de Pedidos)
 ```
 ```
-## 🧾 Indicadores-Chave (KPI Cards)
-### 🎯 1. Receita Total
+##  Indicadores-Chave (KPI Cards)
+###  1. Receita Total
 ```
 SELECT SUM(RECEITA_VENDA) AS RECEITA_TOTAL FROM VENDAS_INTERNET
 
 ```
-### 🧮 2. Custo Total
+###  2. Custo Total
 ```
 SELECT SUM(CUSTO_VENDA) AS CUSTO_TOTAL FROM VENDAS_INTERNET
 
 ```
-### 📊 3. Margem Total
+###  3. Margem Total
 ```
 SELECT SUM(RECEITA_VENDA - CUSTO_VENDA) AS MARGEM_TOTAL FROM VENDAS_INTERNET
 
 ```
-### 📦 4. Total de Pedidos
+###  4. Total de Pedidos
 ```
 SELECT COUNT(DISTINCT Nº_PEDIDO) AS TOTAL_PEDIDOS FROM VENDAS_INTERNET
 
 ```
-### 🧾 5. Ticket Médio
+###  5. Ticket Médio
 ```
 SELECT 
     SUM(RECEITA_VENDA) / COUNT(DISTINCT Nº_PEDIDO) AS TICKET_MEDIO
 FROM VENDAS_INTERNET
 
 ```
-## 📸 Visualizações do Dashboard
+##  Visualizações do Dashboard
 
 Abaixo estão dois exemplos de visualizações geradas no Excel a partir da integração com SQL Server:
 
-### 🖼️ 1. Primeira página do Relatório
+###  1. Primeira página do Relatório
 
 ![Dashboard](https://github.com/user-attachments/assets/b71a43b6-1f5c-4a2e-bf79-c9e7348f2446)
 
@@ -256,7 +256,7 @@ Abaixo estão dois exemplos de visualizações geradas no Excel a partir da inte
 
 ---
 
-### 📊 2. Página do Relatório
+###  2. Página do Relatório
 ![Dashboard](https://github.com/user-attachments/assets/2801479b-cd45-42d5-a003-7e582689fc25)
 
 
@@ -264,7 +264,7 @@ Abaixo estão dois exemplos de visualizações geradas no Excel a partir da inte
 
 
 ````
-## 🔄 Atualização de Dados e Integração com Excel
+##  Atualização de Dados e Integração com Excel
 Exemplo de atualização de dados via transação SQL:
 ```
 BEGIN TRANSACTION T1
@@ -274,9 +274,9 @@ BEGIN TRANSACTION T1
 ````
 ### A view VENDAS_INTERNET pode ser conectada ao Excel via Power Query ou conexão ODBC para criação de dashboards dinâmicos.
 
-## 🧠 Autor(a)
+##  Autor(a)
 Débora Rebula Klein - Projeto acadêmico e exploratório para fins de aprendizado em BI e integração de dados.
 
-### 📎 Licença
+###  Licença
 Este projeto é de uso livre para fins educacionais. AdventureWorks é uma base de dados pública fornecida pela Microsoft.
 ```
