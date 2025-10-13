@@ -234,8 +234,15 @@ FROM VENDAS_INTERNET
 ### Dashboard Visualizations
 Below are two examples of visualizations generated in Excel from the SQL Server integration:
 
-1. First Report Page
-(Image placeholder)
+#### 1. Report Page
+![Dashboard](https://github.com/user-attachments/assets/b71a43b6-1f5c-4a2e-bf79-c9e7348f2446)
 
-2. Report Page
-(Image placeholder)
+
+
+
+---
+
+####  2. Report Page
+![Dashboard](https://github.com/user-attachments/assets/2801479b-cd45-42d5-a003-7e582689fc25)
+
+
